@@ -14,6 +14,7 @@ import MyProducts from "./components/MyProducts/MyProducts.jsx";
 import MyBids from "./components/MyBids/MyBids.jsx";
 import ProductDetails from "./components/ProductDetails/ProductDetails.jsx";
 import PrivateRoute from "./Routes/PrivateRoute.jsx";
+import CreateAProduct from "./components/CreateAProduct/CreateAProduct.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,17 +35,37 @@ const router = createBrowserRouter([
       },
       {
         path: "myProducts",
-        element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyProducts></MyProducts>
+          </PrivateRoute>
+        ),
       },
       {
         path: "myBids",
-        element: <PrivateRoute><MyBids></MyBids></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyBids></MyBids>
+          </PrivateRoute>
+        ),
       },
       {
         path: "productDetails/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/products/${params.id}`),
-        element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <ProductDetails></ProductDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/createAProduct",
+        element: (
+          <PrivateRoute>
+            <CreateAProduct></CreateAProduct>
+          </PrivateRoute>
+        ),
       },
     ],
   },
