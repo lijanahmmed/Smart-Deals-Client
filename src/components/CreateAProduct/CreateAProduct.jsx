@@ -1,11 +1,13 @@
 import React from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
-import useAxios from "../../Hooks/useAxios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+// import useAxios from "../../Hooks/useAxios";
 
 const CreateAProduct = () => {
   const { user } = useAuth();
-  const axiosInstance = useAxios();
+  //   const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
 
   const handleCreateAProduct = (e) => {
     e.preventDefault();
@@ -23,7 +25,7 @@ const CreateAProduct = () => {
       seller_name: user.displayName,
     };
 
-    axiosInstance.post("/products", newProduct).then((data) => {
+    axiosSecure.post("/products", newProduct).then((data) => {
       if (data.data.insertedId) {
         Swal.fire({
           position: "top-end",
@@ -35,6 +37,7 @@ const CreateAProduct = () => {
       }
     });
   };
+  
   return (
     <div className="lg:w-1/5 mx-auto">
       <form onSubmit={handleCreateAProduct}>
